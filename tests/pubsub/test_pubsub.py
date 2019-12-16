@@ -474,7 +474,7 @@ async def test_push_msg(pubsubs_fsub, monkeypatch):
     #   `router_publish` is not called then.
     event.clear()
     await pubsubs_fsub[0].push_msg(pubsubs_fsub[0].my_id, msg_0)
-    await asyncio.sleep(0.01)
+    await asyncio.sleep(0)
     assert not event.is_set()
 
     sub = await pubsubs_fsub[0].subscribe(TESTING_TOPIC)
@@ -509,7 +509,7 @@ async def test_push_msg(pubsubs_fsub, monkeypatch):
 
     event.clear()
     await pubsubs_fsub[0].push_msg(pubsubs_fsub[0].my_id, msg_2)
-    await asyncio.sleep(0.01)
+    await asyncio.sleep(0)
     assert not event.is_set()
 
 
@@ -555,26 +555,26 @@ async def test_strict_signing_failed_validation(pubsubs_fsub, hosts, monkeypatch
 
     # Test: no signature attached in `msg`
     await pubsubs_fsub[0].push_msg(pubsubs_fsub[0].my_id, msg)
-    await asyncio.sleep(0.01)
+    await asyncio.sleep(0)
     assert not event.is_set()
 
     # Test: `msg.key` does not match `msg.from_id`
     msg.key = hosts[1].get_public_key().serialize()
     msg.signature = signature
     await pubsubs_fsub[0].push_msg(pubsubs_fsub[0].my_id, msg)
-    await asyncio.sleep(0.01)
+    await asyncio.sleep(0)
     assert not event.is_set()
 
     # Test: invalid signature
     msg.key = hosts[0].get_public_key().serialize()
     msg.signature = b"\x12" * 100
     await pubsubs_fsub[0].push_msg(pubsubs_fsub[0].my_id, msg)
-    await asyncio.sleep(0.01)
+    await asyncio.sleep(0)
     assert not event.is_set()
 
     # Finally, assert the signature indeed will pass validation
     msg.key = hosts[0].get_public_key().serialize()
     msg.signature = signature
     await pubsubs_fsub[0].push_msg(pubsubs_fsub[0].my_id, msg)
-    await asyncio.sleep(0.01)
+    await asyncio.sleep(0)
     assert event.is_set()

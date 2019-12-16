@@ -77,21 +77,21 @@ async def test_notify(is_host_secure):
     # OpenedStream: third, but different direction.
     await swarms[1].new_stream(swarms[0].get_peer_id())
 
-    await asyncio.sleep(0.01)
+    await asyncio.sleep(0)
 
     # TODO: Check `ClosedStream` and `ListenClose` events after they are ready.
 
     # Disconnected
     await swarms[0].close_peer(swarms[1].get_peer_id())
-    await asyncio.sleep(0.01)
+    await asyncio.sleep(0)
 
     # Connected again, but different direction.
     await connect_swarm(swarms[1], swarms[0])
-    await asyncio.sleep(0.01)
+    await asyncio.sleep(0)
 
     # Disconnected again, but different direction.
     await swarms[1].close_peer(swarms[0].get_peer_id())
-    await asyncio.sleep(0.01)
+    await asyncio.sleep(0)
 
     expected_events_without_listen = [
         Event.Connected,
