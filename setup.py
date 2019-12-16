@@ -9,6 +9,8 @@ extras_require = {
         "pytest>=4.6.3,<5.0.0",
         "pytest-asyncio>=0.10.0,<1.0.0",
         "pytest-xdist>=1.30.0",
+        "p2pclient",
+        "pexpect"
     ],
     "lint": [
         "mypy>=0.701,<1.0",
@@ -25,12 +27,27 @@ extras_require = {
         "tox>=3.13.2,<4.0.0",
         "twine",
         "wheel",
+        "eth_utils"
     ],
 }
 
 extras_require["dev"] = (
     extras_require["test"] + extras_require["lint"] + extras_require["dev"]
 )
+
+fastecdsa = [
+      # Wheels are provided for these platforms.
+      'fastecdsa==1.7.5;platform_system!="Windows"',
+
+      # No wheels defined for Windows (for fastecdsa), using a modded version (of 1.7.5) that includes the right
+      # libraries to build a wheel with.
+      # Fixme: remove section when fastecdsa has released a windows-compatible wheel (win32 and win_amd64)
+      # Fixme: See the following issues;
+      # Fixme: https://github.com/libp2p/py-libp2p/issues/363
+      # Fixme: https://github.com/AntonKueltz/fastecdsa/issues/11
+      'fastecdsa @ git+https://github.com/shadowjonathan/fastecdsa-any@51164b711e955e81bdbc8a7b49aa81239b38ad78;'
+      'platform_system=="Windows"'
+]
 
 
 with open("./README.md") as readme:
@@ -66,9 +83,8 @@ setuptools.setup(
         "lru-dict>=1.1.6",
         "protobuf>=3.10.0,<4.0.0",
         "coincurve>=10.0.0,<11.0.0",
-        "fastecdsa==1.7.4",
         "pynacl==1.3.0",
-    ],
+    ] + fastecdsa,
     extras_require=extras_require,
     packages=setuptools.find_packages(exclude=["tests", "tests.*"]),
     zip_safe=False,
