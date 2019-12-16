@@ -11,7 +11,7 @@ extras_require = {
         "pytest-asyncio>=0.10.0,<1.0.0",
         "factory-boy>=2.12.0,<3.0.0",
         "p2pclient",
-        "pexpect"
+        "pexpect",
     ],
     "lint": [
         "flake8==3.7.9",  # flake8 is not semver: it has added new warnings at minor releases
@@ -35,7 +35,7 @@ extras_require = {
         "ipython",
         "setuptools>=36.2.0",
         "tox>=3.13.2,<4.0.0",
-        "eth_utils"
+        "eth_utils",
     ],
 }
 
@@ -56,7 +56,6 @@ fastecdsa = [
     #  https://github.com/AntonKueltz/fastecdsa/issues/11
     "fastecdsa@git+https://github.com/shadowjonathan/fastecdsa-any@"
     "51164b711e955e81bdbc8a7b49aa81239b38ad78 ;platform_system=='Windows'",
-
     # Wheels are provided for these platforms.
     "fastecdsa==1.7.5;platform_system!='Windows'",
 ]
