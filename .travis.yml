@@ -3,18 +3,27 @@ language: python
 matrix:
   include:
     - python: 3.6-dev
+      name: "Python 3.6 test on linux"
       dist: xenial
       env: TOXENV=py36-test
     - python: 3.7-dev
+      name: "Python 3.6 test on linux"
       dist: xenial
       env: TOXENV=py37-test
+    - python: 3.8-dev
+      name: "Python 3.8 test on linux"
+      dist: xenial
+      env: TOXENV=py38-test
     - python: 3.7-dev
+      name: "Python 3.7 lint on linux"
       dist: xenial
       env: TOXENV=lint
     - python: 3.7-dev
+      name: "Python 3.7 docs on linux"
       dist: xenial
       env: TOXENV=docs
     - python: 3.7-dev
+      name: "Python 3.7 interop on linux"
       dist: xenial
       env: TOXENV=py37-interop
       sudo: true
@@ -26,6 +35,21 @@ matrix:
         - export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
         - ./tests_interop/go_pkgs/install_interop_go_pkgs.sh
 
+    - name: "Python 3.6,3.7,3.8 test on Windows"
+      os: windows
+      language: shell
+      before_install:
+        - choco install python --version 3.6.8 --force --params "/InstallDir:C:\Python36"
+        - choco install python --version 3.7.5 --force --params "/InstallDir:C:\Python37"
+        - choco install python --version 3.8.0 --force --params "/InstallDir:C:\Python38"
+        - py -3.6 --version
+        - py -3.7 --version
+        - py -3.8 --version
+        - py -3.6 -m pip install --upgrade pip
+        - py -3.7 -m pip install --upgrade pip
+        - py -3.8 -m pip install --upgrade pip
+      env: PATH=/c/Python36:/c/Python36/Scripts:/c/Python37:/c/Python37/Scripts:/c/Python38:/c/Python38/Scripts:$PATH TOXENV=py{36,37,38}-test
+
 install:
   - pip install --upgrade pip
   - pip install tox
@@ -34,4 +58,4 @@ script:
   - tox
 
 notifications:
-    slack: py-libp2p:RK0WVoQZhQXLgIKfHNPL1TR2
+  slack: py-libp2p:RK0WVoQZhQXLgIKfHNPL1TR2
