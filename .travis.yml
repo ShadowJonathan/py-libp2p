@@ -7,7 +7,7 @@ matrix:
       dist: xenial
       env: TOXENV=py36-test
     - python: 3.7-dev
-      name: "Python 3.6 test on linux"
+      name: "Python 3.7 test on linux"
       dist: xenial
       env: TOXENV=py37-test
     - python: 3.8-dev
@@ -48,7 +48,8 @@ matrix:
         - py -3.6 -m pip install --upgrade pip
         - py -3.7 -m pip install --upgrade pip
         - py -3.8 -m pip install --upgrade pip
-      env: PATH=/c/Python36:/c/Python36/Scripts:/c/Python37:/c/Python37/Scripts:/c/Python38:/c/Python38/Scripts:$PATH TOXENV=py{36,37,38}-test
+      env: PATH=/c/Python36:/c/Python36/Scripts:/c/Python37:/c/Python37/Scripts:/c/Python38:/c/Python38/Scripts:$PATH
+      TOXENV=py36-test,py37-test,py38-test
 
 install:
   - pip install --upgrade pip
