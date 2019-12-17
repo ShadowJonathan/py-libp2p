@@ -1,9 +1,9 @@
+import asyncio
 import itertools
 import math
 
 from libp2p.exceptions import ParseError
 from libp2p.io.abc import Reader
-
 from .io.utils import read_exactly
 
 # Unsigned LEB128(varint codec)
@@ -11,7 +11,6 @@ from .io.utils import read_exactly
 
 LOW_MASK = 2 ** 7 - 1
 HIGH_MASK = 2 ** 7
-
 
 # The maximum shift width for a 64 bit integer.  We shouldn't have to decode
 # integers larger than this.
@@ -82,6 +81,7 @@ async def read_delim(reader: Reader) -> bytes:
 
 SIZE_LEN_BYTES = 4
 
+
 # Fixed-prefixed read/write, used by "/plaintext/2.0.0".
 # Reference: https://github.com/libp2p/go-msgio/blob/d5bbf59d3c4240266b1d2e5df9dc993454c42011/num.go#L11-L33  # noqa: E501  # noqa: E501
 
@@ -95,3 +95,14 @@ async def read_fixedint_prefixed(reader: Reader) -> bytes:
     len_bytes = await reader.read(SIZE_LEN_BYTES)
     len_int = int.from_bytes(len_bytes, "big")
     return await reader.read(len_int)
+
+
+async def step_loop():
+    e = asyncio.Event()
+    asyncio.get_running_loop().call_soon(e.set)
+    await e.wait()
+
+class SelectorEventLoopPolicy(asyncio.events.BaseDefaultEventLoopPolicy):
+    _loop_factory = asyncio.SelectorEventLoop
+
+asyncio.set_event_loop_policy(SelectorEventLoopPolicy())

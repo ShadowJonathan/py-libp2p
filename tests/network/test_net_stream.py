@@ -113,6 +113,5 @@ async def test_net_stream_write_after_local_reset(net_stream_pair):
 async def test_net_stream_write_after_remote_reset(net_stream_pair):
     stream_0, stream_1 = net_stream_pair
     await stream_1.reset()
-    await asyncio.sleep(0)
     with pytest.raises(StreamClosed):
         await stream_0.write(DATA)
