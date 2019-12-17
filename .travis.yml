@@ -39,9 +39,9 @@ matrix:
       os: windows
       language: shell
       before_install:
-        - choco install python --version 3.6.8 --force --params "/InstallDir:C:\Python36"
-        - choco install python --version 3.7.5 --force --params "/InstallDir:C:\Python37"
-        - choco install python --version 3.8.0 --force --params "/InstallDir:C:\Python38"
+        - choco install python3 --version 3.6.8 --force --params "/InstallDir:C:\Python36"
+        - choco install python3 --version 3.7.5 --force --params "/InstallDir:C:\Python37"
+        - choco install python3 --version 3.8.0 --force --params "/InstallDir:C:\Python38"
         - py -3.6 --version
         - py -3.7 --version
         - py -3.8 --version
