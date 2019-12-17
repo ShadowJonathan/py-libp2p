@@ -55,9 +55,9 @@ fastecdsa = [
     #  https://github.com/libp2p/py-libp2p/issues/363
     #  https://github.com/AntonKueltz/fastecdsa/issues/11
     "fastecdsa@git+https://github.com/shadowjonathan/fastecdsa-any@"
-    "51164b711e955e81bdbc8a7b49aa81239b38ad78 ;platform_system=='Windows'",
+    "51164b711e955e81bdbc8a7b49aa81239b38ad78 ;sys_platform=='win32'",
     # Wheels are provided for these platforms.
-    "fastecdsa==1.7.5;platform_system!='Windows'",
+    "fastecdsa==1.7.5;sys_platform!='win32'",
 ]
 
 
