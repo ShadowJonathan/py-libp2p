@@ -10,8 +10,6 @@ extras_require = {
         "pytest-xdist>=1.30.0,<2",
         "pytest-asyncio>=0.10.0,<1.0.0",
         "factory-boy>=2.12.0,<3.0.0",
-        "p2pclient",
-        "pexpect",
     ],
     "lint": [
         "flake8==3.7.9",  # flake8 is not semver: it has added new warnings at minor releases
