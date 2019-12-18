@@ -45,16 +45,16 @@ extras_require["dev"] = (
 )
 
 fastecdsa = [
-    # No wheels defined for Windows (for fastecdsa), using a modded version (of 1.7.5) that
-    # includes the right libraries to build a wheel with.
+    # No official fastecdsa==1.7.4,1.7.5 wheels for Windows, using a pypi package that includes
+    # the original library, but also windows-built wheels (32+64-bit) on those versions.
     # Fixme: Remove section when fastecdsa has released a windows-compatible wheel
     #  (specifically: both win32 and win_amd64 targets)
     #  See the following issues for more information;
     #  https://github.com/libp2p/py-libp2p/issues/363
     #  https://github.com/AntonKueltz/fastecdsa/issues/11
-    "fastecdsa@git+https://github.com/shadowjonathan/fastecdsa-any@"
-    "51164b711e955e81bdbc8a7b49aa81239b38ad78 ;sys_platform=='win32'",
-    # Wheels are provided for these platforms.
+    "fastecdsa-any==1.7.5;sys_platform=='win32'",
+    # Wheels are provided for these platforms, or compiling one is minimally frustrating in a
+    # default python installation.
     "fastecdsa==1.7.5;sys_platform!='win32'",
 ]
 
