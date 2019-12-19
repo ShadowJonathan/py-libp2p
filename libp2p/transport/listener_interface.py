@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List
+from typing import Iterable
 
 from multiaddr import Multiaddr
 
@@ -15,7 +15,7 @@ class IListener(ABC):
         """
 
     @abstractmethod
-    def get_addrs(self) -> List[Multiaddr]:
+    def get_addrs(self) -> Iterable[Multiaddr]:
         """
         retrieve list of addresses the listener is listening on.
 
