@@ -65,9 +65,9 @@ def initialize_pair(
     with authenticated encryption derived from the ``secret`` and using the
     requested ``cipher_type`` and ``hash_type``."""
     if cipher_type != "AES-128":
-        raise NotImplementedError()
+        raise NotImplementedError()  # fixme
     if hash_type != "SHA256":
-        raise NotImplementedError()
+        raise NotImplementedError()  # fixme
 
     iv_size = 16
     cipher_key_size = 16
