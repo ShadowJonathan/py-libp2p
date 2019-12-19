@@ -3,21 +3,27 @@ language: python
 matrix:
   include:
     - python: 3.6-dev
+      name: Python 3.6 Test on linux
       dist: xenial
       env: TOXENV=py36-test
     - python: 3.7-dev
+      name: Python 3.7 Test on linux
       dist: xenial
       env: TOXENV=py37-test
     - python: 3.8-dev
+      name: Python 3.8 Test on linux
       dist: xenial
       env: TOXENV=py38-test
     - python: 3.7-dev
+      name: Lint on linux
       dist: xenial
       env: TOXENV=lint
     - python: 3.7-dev
+      name: Docs on linux
       dist: xenial
       env: TOXENV=docs
     - python: 3.7-dev
+      name: Python 3.8 InterOp on linux
       dist: xenial
       env: TOXENV=py37-interop
       sudo: true
