@@ -8,6 +8,9 @@ matrix:
     - python: 3.7-dev
       dist: xenial
       env: TOXENV=py37-test
+    - python: 3.8-dev
+      dist: xenial
+      env: TOXENV=py38-test
     - python: 3.7-dev
       dist: xenial
       env: TOXENV=lint
